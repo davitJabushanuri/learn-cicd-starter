@@ -35,7 +35,3 @@ func TestGetAPIKey(t *testing.T) {
         }
     })
 }
-
-func TestFailure(t *testing.T) {
-    t.Error("This is a failing test")
-}
