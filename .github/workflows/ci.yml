@@ -18,5 +18,36 @@ jobs:
       - name: Check out code
         uses: actions/checkout@v3
 
-      - name: Run tests
+      - name: Run unit tests
         run: go test ./... -cover
+
+  style:
+    name: Style
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Set up Go
+        uses: actions/setup-go@v4
+
+      - name: Check out code
+        uses: actions/checkout@v3
+
+      - name: Check formatting
+        run: go fmt ./...
+
+  lint:
+    name: Lint
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Set up Go
+        uses: actions/setup-go@v4
+
+      - name: Check out code
+        uses: actions/checkout@v3
+
+      - name: Install staticcheck
+        run: go install honnef.co/go/tools/cmd/staticcheck@latest
+
+      - name: Run staticcheck
+        run: staticcheck ./...
